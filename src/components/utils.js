@@ -13,8 +13,15 @@ const randomQuestion = (topic) => {
   return questions[questionTopic][randomQuestionIndex];
 };
 
-const getCorrectAnswear = () => {
-  
-}
+const getCorrectAnswear = (topic, id) => {
+
+  const question = questions[topic].find((question) => question.id === id);
+
+  if (!question.hasOptions) {
+    return question.answer;
+  }
+
+  return question.options.find((option) => option.isCorrect).text;
+};
 
 module.exports = { randomQuestion, getCorrectAnswear };
